@@ -1,55 +1,49 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ImportNameForMoviejs from './movie.js'
+// import Movie from './movie.js';
 
-const welcome = "Hello Walter. You got this!!!";
+const movies = [
+    {
+        id:1,
+        title: 'Star Wars',
+        another: "Wedding Crashers",
+        desc: "You know Star Wars..."
+    },{
+        id:2,
+        title: 'Spiderman',
+        another: 'Knocked Up'
+    },{
+        id:3,
+        title: 'Fast and the Furious',
+        another: 'Get Out'
+    },{
+        id:4,
+        title: 'Bad Santa',
+        another: '1917'
+    }
+]; // you can use map to iterate through the list of objects
 
 class App extends Component {
-    state = {
-        input: 'Hello there'
+    componentDidMount(){
+        const data = fetch('https://api.themoviedb.org/3/movie/550?api_key=85fd4cc1a9da722b211bc427eb9eac3d')
+            .then(data => console.log(data))
+        console.log(data);
     }
 
-    updateInput = (ev)=> {
-        this.setState({
-            input: ev.target.value.trim()
-        })
-    }
+    render(){return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+            </header> 
 
-    submit = () => {
-        console.log(this.newItemCouldBeAnything.value); // this.newItemCouldBeAnything is connected to a node element
-        this.newItemCouldBeAnything.value = '';
-    }
-  render(){return (
-    <div className="App">
-        <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Welcome text="YES YES YES Y'ALL"/>
-        <a className="App-link" 
-            href="https://reactjs.org" 
-            target="_blank" 
-            rel="noopener noreferrer" >
-                Learn React
-        </a>
-        </header> 
-        {/* below input is just the type and 
-            - onChange controls the input whenever there is a change (works on all input events)
-        */}
-        <h3>{this.state.input}</h3>
-        <input type="text" onChange ={this.updateInput} value = {this.state.input} /> 
-        <input type="text" ref={(textBoxContents)=>this.newItemCouldBeAnything = textBoxContents}/>
-        <button onClick = {this.submit}>Show Value</button>
-    </div>
-    );
-    }
+            {movies.map(m=>(
+                <ImportNameForMoviejs key={m.id} dp_movie={m} />
+            ))}
+        </div>
+    );}
 }
 
-class Welcome extends Component {
-    render(){
-        const {text} = this.props;
-        return (
-            <h1 className="App-title">{text}</h1>
-        )
-    }
-}
 
 export default App;

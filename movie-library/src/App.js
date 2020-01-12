@@ -5,9 +5,19 @@ import './App.css';
 const welcome = "Hello Walter. You got this!!!";
 
 class App extends Component {
-    toggle = () => {
+    state = {
+        input: 'Hello there'
+    }
 
+    updateInput = (ev)=> {
+        this.setState({
+            input: ev.target.value.trim()
+        })
+    }
 
+    submit = () => {
+        console.log(this.newItemCouldBeAnything.value); // this.newItemCouldBeAnything is connected to a node element
+        this.newItemCouldBeAnything.value = '';
     }
   render(){return (
     <div className="App">
@@ -20,14 +30,18 @@ class App extends Component {
             rel="noopener noreferrer" >
                 Learn React
         </a>
-        </header>
-        <input type="text" />
-        <button onClick = {this.toggle}>Show Value</button>
+        </header> 
+        {/* below input is just the type and 
+            - onChange controls the input whenever there is a change (works on all input events)
+        */}
+        <h3>{this.state.input}</h3>
+        <input type="text" onChange ={this.updateInput} value = {this.state.input} /> 
+        <input type="text" ref={(textBoxContents)=>this.newItemCouldBeAnything = textBoxContents}/>
+        <button onClick = {this.submit}>Show Value</button>
     </div>
     );
     }
 }
-
 
 class Welcome extends Component {
     render(){

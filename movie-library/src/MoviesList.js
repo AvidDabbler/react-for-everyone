@@ -5,13 +5,11 @@ import Movie from './Movie';
 
 
 
-
-
-class MoviesList extends Component {
+class MoviesList extends React.Component {
   state = {
     movies: [],
   }
-
+  
   async componentDidMount() {
     try {
       const res = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1');
@@ -23,7 +21,7 @@ class MoviesList extends Component {
       console.log(e);
     }
   }
-
+  
   render() {
     return (
       <MovieGrid>
@@ -40,5 +38,5 @@ const MovieGrid = styled.div`
   padding: 1rem;
   grid-template-columns: repeat(6, 1fr);
   grid-row-gap: 1rem;
+  background-color: grey;
 `;
-

@@ -1,11 +1,11 @@
 /* eslint react/no-did-mount-set-state: 0 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Movie from './Movie';
 
 
 
-class MoviesList extends React.Component {
+class MoviesList extends PureComponent {
   state = {
     movies: [],
   }
@@ -38,5 +38,4 @@ const MovieGrid = styled.div`
   padding: 1rem;
   grid-template-columns: repeat(6, 1fr);
   grid-row-gap: 1rem;
-  background-color: grey;
 `;

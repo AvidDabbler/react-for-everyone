@@ -1,4 +1,9 @@
 module.exports = {
+  "extends": [
+    'airbnb',
+    'prettier',
+    'prettier/react'
+  ]
   "parser": "babel-eslint",
   "env": {
       "browser": true,
@@ -24,7 +29,7 @@ module.exports = {
   "rules": {
     "react/jsx-filename-extension": 0,
     "function-paren-newline": 0,
-    "allowIndentationTabs": true,
-    "indent": [2, "tab"]
+    "linebreak-style": ["error", "windows"],
+    "react/no-did-mount-set-state": 0
   }
 };
